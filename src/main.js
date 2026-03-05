@@ -1,38 +1,48 @@
 import * as THREE from 'three';
+import './style.css';
 import {createSvgCircle} from "./svgCircle.js";
 import {createCube} from "./cube.js";
 import {createLight} from "./light.js";
 
-const scene = new THREE.Scene();
-scene.background = new THREE.Color('white');
+function init() {
+    const leftHalf = document.getElementById('left-half');
+    const rightHalf = document.getElementById('right-half');
 
-const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 500);
-camera.position.z = 5;
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('white');
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 500);
+    camera.position.z = 5;
 
-const cube1 = createCube();
-cube1.position.x = 1;
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(leftHalf.clientWidth, leftHalf.clientHeight);
 
-const cube2 = createCube();
-cube2.position.x = -1;
+    const cube1 = createCube();
+    cube1.position.x = -2;
 
-const light = createLight();
+    const cube2 = createCube();
+    cube2.position.x = 2;
 
-scene.add(light);
+    const light = createLight();
 
-scene.add(cube1);
-scene.add(cube2);
+    scene.add(light);
+    scene.add(cube1);
+    scene.add(cube2);
 
-createSvgCircle();
+    leftHalf.appendChild(renderer.domElement);
 
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
+    renderer.render(scene, camera);
 
-renderer.render(scene, camera);
+    createSvgCircle(rightHalf);
 
-document.body.appendChild(renderer.domElement);
+    window.addEventListener('resize', () => {
+        const width = leftHalf.clientWidth;
+        const height = leftHalf.clientHeight;
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+    });
+}
+
+window.addEventListener('load', init);
