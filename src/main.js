@@ -4,9 +4,12 @@ import {createSvgCircle} from "./svgCircle.js";
 import {createCube} from "./cube.js";
 import {createLight} from "./light.js";
 
+let isRedState = false;
+
 function init() {
     const leftHalf = document.getElementById('left-half');
     const rightHalf = document.getElementById('right-half');
+    const btn = document.getElementById('button');
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('white');
@@ -17,10 +20,10 @@ function init() {
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(leftHalf.clientWidth, leftHalf.clientHeight);
 
-    const cube1 = createCube();
+    const cube1 = createCube('#00FF00');
     cube1.position.x = -2;
 
-    const cube2 = createCube();
+    const cube2 = createCube('#00FF00');
     cube2.position.x = 2;
 
     const light = createLight();
@@ -33,7 +36,38 @@ function init() {
 
     renderer.render(scene, camera);
 
-    createSvgCircle(rightHalf);
+    const svgCircle = createSvgCircle(rightHalf);
+
+    function toggleState(cube1, cube2, svgCircle) {
+        isRedState = !isRedState;
+
+        if (isRedState) {
+            cube1.position.x = -1;
+            cube2.position.x = 1;
+
+            cube1.material.color.setHex(0xff0000);
+            cube2.material.color.setHex(0xff0000);
+
+            const svg = svgCircle.querySelector('svg circle');
+            if (svg) svg.setAttribute('fill', 'red');
+        } else {
+            cube1.position.x = -2;
+            cube2.position.x = 2;
+
+            cube1.material.color.setHex(0x00ff00);
+            cube2.material.color.setHex(0x00ff00);
+
+            const svg = svgCircle.querySelector('svg circle');
+            if (svg) svg.setAttribute('fill', '#00FF00');
+        }
+
+        renderer.render(scene, camera);
+    }
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleState(cube1, cube2, svgCircle);
+    });
 
     window.addEventListener('resize', () => {
         const width = leftHalf.clientWidth;
