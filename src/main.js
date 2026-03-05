@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {createSvgCircle} from "./svgCircle.js";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 500);
@@ -29,6 +30,8 @@ cube1.rotation.x = 0.2;
 cube2.rotation.x = 0.2;
 
 camera.position.z = 5;
+
+createSvgCircle();
 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
