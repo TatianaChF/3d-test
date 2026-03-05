@@ -7,10 +7,26 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({color: 'green'});
-const cube = new THREE.Mesh(geometry, material);
+const material = new THREE.MeshLambertMaterial({color: '#00FF00'});
+const cube1 = new THREE.Mesh(geometry, material);
+const cube2 = new THREE.Mesh(geometry, material);
 
-scene.add(cube);
+const light = new THREE.DirectionalLight();
+light.position.set(0, 2, 2);
+scene.add(light);
+
+cube1.position.x = -1;
+cube2.position.x = 1.5;
+
+scene.background = new THREE.Color('white');
+
+scene.add(cube1);
+scene.add(cube2);
+
+cube1.rotation.y = -0.5;
+cube2.rotation.y = -0.5;
+cube1.rotation.x = 0.2;
+cube2.rotation.x = 0.2;
 
 camera.position.z = 5;
 
