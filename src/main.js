@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import './style.css';
-import {createSvgCircle} from "./svgCircle.js";
-import {createCube} from "./cube.js";
-import {createLight} from "./light.js";
+import {createSvgCircle} from "./objects/svgCircle.js";
+import {createCube} from "./objects/cube.js";
+import {createLight} from "./objects/light.js";
 
 let isRedState = false;
 
