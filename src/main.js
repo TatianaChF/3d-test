@@ -26,9 +26,14 @@ function init() {
     const cube2 = createCube('#00FF00');
     cube2.position.x = 2;
 
-    const light = createLight();
+    const light1 = createLight(2, 3, 4);
+    const light2 = createLight(-2, 3, 4);
 
-    scene.add(light);
+    const ambientLight = new THREE.AmbientLight(0x404040);
+
+    scene.add(light1);
+    scene.add(light2);
+    scene.add(ambientLight);
     scene.add(cube1);
     scene.add(cube2);
 
