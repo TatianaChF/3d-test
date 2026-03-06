@@ -3,7 +3,7 @@ import './style.css';
 import {createSvgCircle} from "./objects/svgCircle.js";
 import {createCube} from "./objects/cube.js";
 import {createLight} from "./objects/light.js";
-import {startColor, startX1, startX2} from "./constants.js";
+import {startColor, startPositionCube1X, startPositionCube2X} from "./constants.js";
 import {toggleState} from "./animation.js";
 import {setupCamera, setupRenderer, setupResizeHandler, setupScene} from "./scene/sceneSetup.js";
 
@@ -19,11 +19,11 @@ function init() {
     const cubesGroup = new THREE.Group();
 
     const cube1 = createCube(startColor);
-    cube1.position.x = startX1;
+    cube1.position.x = startPositionCube1X;
     cubesGroup.add(cube1);
 
     const cube2 = createCube(startColor);
-    cube2.position.x = startX2;
+    cube2.position.x = startPositionCube2X;
     cubesGroup.add(cube2);
 
     const light1 = createLight(2, 3, 4);

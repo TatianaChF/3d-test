@@ -1,4 +1,9 @@
-import {endColor, endX1, endX2, startColor, startX1, startX2} from "./constants.js";
+import {
+    endColor,
+    endPositionCube1X, endPositionCube2X,
+    startColor,
+    startPositionCube1X, startPositionCube2X,
+} from "./constants.js";
 
 let isRedState = false;
 let isAnimating = false;
@@ -26,8 +31,8 @@ function animateTransition(cube1, cube2, svgCircleElement, renderer, scene, came
         }
     }
 
-    cube1.position.x = startX1 + (endX1 - startX1) * animationProgress;
-    cube2.position.x = startX2 + (endX2 - startX2) * animationProgress;
+    cube1.position.x = startPositionCube1X + (endPositionCube1X - startPositionCube1X) * animationProgress;
+    cube2.position.x = startPositionCube2X + (endPositionCube2X - startPositionCube2X) * animationProgress;
 
     const currentColor = startColor.clone().lerp(endColor, animationProgress);
 
