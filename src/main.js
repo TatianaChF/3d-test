@@ -16,15 +16,15 @@ function init() {
     const camera = setupCamera();
     const renderer = setupRenderer(leftHalf);
 
-    const cubesGroup = new THREE.Group();
+    const cubeGroup = new THREE.Group();
 
     const cube1 = createCube(startColor);
     cube1.position.x = startPositionCube1X;
-    cubesGroup.add(cube1);
+    cubeGroup.add(cube1);
 
     const cube2 = createCube(startColor);
     cube2.position.x = startPositionCube2X;
-    cubesGroup.add(cube2);
+    cubeGroup.add(cube2);
 
     const light1 = createLight(2, 3, 4);
     const light2 = createLight(-2, 3, 4);
@@ -34,7 +34,7 @@ function init() {
     scene.add(light1);
     scene.add(light2);
     scene.add(ambientLight);
-    scene.add(cubesGroup);
+    scene.add(cubeGroup);
 
     leftHalf.appendChild(renderer.domElement);
 
