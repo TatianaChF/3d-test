@@ -8,13 +8,20 @@ export function setupScene() {
 }
 
 export function setupCamera() {
+    const fov = 75;
+    const aspect = 1;
+    const near = 0.1;
+    const far = 500;
+
+    const cameraPositionZ = 5;
+
     const camera = new THREE.PerspectiveCamera(
-        75,
-        1,
-        0.1,
-        500
+        fov,
+        aspect,
+        near,
+        far
     );
-    camera.position.z = 5;
+    camera.position.z = cameraPositionZ;
 
     return camera;
 }
